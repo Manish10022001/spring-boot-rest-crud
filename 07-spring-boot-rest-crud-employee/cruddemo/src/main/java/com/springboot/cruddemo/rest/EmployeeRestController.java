@@ -1,8 +1,9 @@
 package com.springboot.cruddemo.rest;
 
-import com.springboot.cruddemo.dao.EmployeeDAO;
+
 import com.springboot.cruddemo.entity.Employee;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.springboot.cruddemo.service.EmployeeService;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,18 +14,31 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 public class EmployeeRestController {
-    //define field of emploeeDAO to use
-    private EmployeeDAO employeeDAO;
+//    //define field of emploeeDAO to use
+//    private EmployeeDAO employeeDAO;
+//
+//    //Inject and Destroy: employeeDAO, later will refactor it using service
+//
+//    public EmployeeRestController(EmployeeDAO theEmployeeDAO){
+//        employeeDAO = theEmployeeDAO;
+//    }
+//
+//    //expose "/employees" and return list of all employees
+//    @GetMapping("/employees")
+//    public List<Employee> findAll(){
+//        return employeeDAO.findAll();
+//    } refactor above code to use Service to get single view
 
-    //Inject and Destroy: employeeDAO, later will refactor it using service
+    //define field to add reference to EmployeeService
+    private EmployeeService employeeService;
 
-    public EmployeeRestController(EmployeeDAO theEmployeeDAO){
-        employeeDAO = theEmployeeDAO;
+    //Inject Constructor
+    public EmployeeRestController(EmployeeService theEmployeeService){
+        employeeService = theEmployeeService;
     }
-
     //expose "/employees" and return list of all employees
     @GetMapping("/employees")
     public List<Employee> findAll(){
-        return employeeDAO.findAll();
+        return employeeService.findAll();
     }
 }

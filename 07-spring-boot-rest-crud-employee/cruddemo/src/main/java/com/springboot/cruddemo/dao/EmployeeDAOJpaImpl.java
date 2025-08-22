@@ -1,7 +1,7 @@
 package com.springboot.cruddemo.dao;
 //step 3:
 import com.springboot.cruddemo.entity.Employee;
-import jakarta.persistence.Entity;
+
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
